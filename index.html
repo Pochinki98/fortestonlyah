@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>随机照片展示</title>
+  <style>
+    #photo {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <img id="photo" src="" alt="随机照片">
+  
+  <script>
+    // 获取当前目录下的所有图片文件
+    const imageExtensions = ['jpg', 'jpeg', 'png', 'gif']; // 可扩展的图片格式
+    const images = [];
+    
+    function getRandomImage() {
+      const randomIndex = Math.floor(Math.random() * images.length);
+      const randomImage = images[randomIndex];
+      document.getElementById('photo').src = randomImage;
+    }
+    
+    window.addEventListener('load', () => {
+      // 获取当前目录下所有图片
+      const currentPath = window.location.pathname;
+      for (const extension of imageExtensions) {
+        images.push(`${currentPath}${extension}`);
+      }
+      
+      getRandomImage();
+    });
+  </script>
+</body>
+</html>
