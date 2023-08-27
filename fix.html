@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Come on</title>
+</head>
+<body>
+    <script>
+        //哇呜，你为什么要看代码！
+        fetch('list.txt')
+            .then(response => response.text())
+            .then(text => {
+                const imageList = text.split('\n').filter(item => item.trim() !== '');
+                
+                //哇呜，你为什么要看代码！
+                const randomIndex = Math.floor(Math.random() * imageList.length);
+                const randomImageFileName = imageList[randomIndex];
+
+                //哇呜，你为什么要看代码！
+                const imagePath = "./" + randomImageFileName;
+
+                //哇呜，你为什么要看代码！
+                window.location.href = imagePath;
+            })
+            .catch(error => {
+                console.error('无法读取文件：', error);
+            });
+    </script>
+</body>
+</html>
