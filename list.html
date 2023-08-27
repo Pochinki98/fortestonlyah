@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>随机图片展示</title>
+</head>
+<body>
+    <h1>随机展示一张图片</h1>
+    <img id="randomImage" src="" alt="随机图片">
+
+    <script>
+        // 通过 AJAX 请求读取 list.txt 文件
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "list.txt", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const fileList = xhr.responseText.split("\n").filter(line => line.trim() !== "");
+                const randomIndex = Math.floor(Math.random() * fileList.length);
+                const randomFileName = fileList[randomIndex];
+                const imagePath = "./" + randomFileName; // 假设图片和HTML文件在同一文件夹下
+
+                const randomImageElement = document.getElementById("randomImage");
+                randomImageElement.src = imagePath;
+            }
+        };
+        xhr.send();
+    </script>
+</body>
+</html>
